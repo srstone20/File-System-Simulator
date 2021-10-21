@@ -1,0 +1,104 @@
+{
+    "tests": [
+        {
+            "name": "Run editor state construction tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_state_construction",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 9
+        },
+        {
+            "name": "Run editor state cursor moving tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_state_cursor_move",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 9
+        },
+        {
+            "name": "Run editor state clone tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_state_clone",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 9
+        },
+        {
+            "name": "Run editor print tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_print",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 9
+        } ,
+        {
+            "name": "Run editor move commands tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_cursor_move_commands",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 9
+        },
+        {
+            "name": "Run editor insert commands tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_insert_commands",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 9
+        },
+        {
+            "name": "Run editor delete tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_delete_commands",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 9
+        },
+        {
+            "name": "Run editor search tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_search_commands",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 9
+        },
+        {
+            "name": "Run editor replace tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_replace_commands",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 9
+        },
+        {
+            "name": "Run editor undo/redo tests",
+            "setup": "",
+            "run": "timeout 60 gradle test_editor_undo_redo_commands",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 19
+        }
+    ]
+}

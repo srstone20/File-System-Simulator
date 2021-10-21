@@ -1,0 +1,114 @@
+plugins {
+	id 'java'
+	id 'application'
+	id 'eclipse'	
+}
+
+repositories {
+	mavenCentral()
+}
+
+final def junitJupiterGroup = 'org.junit.jupiter'
+final def junitJupiterVersion = '5.6.0'
+
+final def junitPlatformGroup = 'org.junit.platform'
+final def junitPlatformVersion = '1.4.0'
+ 
+dependencies {
+	testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
+	
+    testImplementation(group: junitJupiterGroup, name: 'junit-jupiter-api', version: junitJupiterVersion)    
+    testRuntimeOnly(group: junitJupiterGroup, name: 'junit-jupiter-engine', version: junitJupiterVersion)
+    testRuntimeOnly(group: junitJupiterGroup, name: 'junit-jupiter-params', version: junitJupiterVersion)
+
+    testRuntimeOnly(group: junitPlatformGroup, name: 'junit-platform-launcher', version: junitPlatformVersion)
+    testRuntimeOnly(group: junitPlatformGroup, name: 'junit-platform-runner', version: junitPlatformVersion)
+}
+
+// The additional eclipse.gradle that resolves the JUnit dependencies 
+eclipse {
+    project {
+        natures 'org.eclipse.buildship.core.gradleprojectnature'
+    }
+
+    classpath {
+        file {
+            whenMerged {
+                entries.findAll { isModule(it) }.each { //(1)
+                    it.entryAttributes['module'] = 'true'
+                }
+
+                entries.findAll { isSource(it) && isTestScope(it) }.each {
+                    it.entryAttributes['test'] = 'true'
+                }
+
+                entries.findAll { isLibrary(it) && isTestScope(it) }.each {
+                    it.entryAttributes['test'] = 'true'
+                }
+            }
+        }
+
+        defaultOutputDir = file('build')
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+boolean isLibrary(entry) { return entry.properties.kind.equals('lib') }
+boolean isTestScope(entry) { return entry.entryAttributes.get('gradle_used_by_scope').equals('test'); }
+
+boolean isModule(entry) { isLibrary(entry) && !isTestScope(entry); }
+boolean isSource(entry) { return entry.properties.kind.equals('src'); }
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
+    }
+}
+
+task test_editor_state_construction (type: Test) {
+	filter.includeTestsMatching "EditorStateTest.testEditorStateConstruction"
+}
+ 
+task test_editor_state_cursor_move (type: Test) {
+	filter.includeTestsMatching "EditorStateTest.testSettingAndMovingCursor"
+}
+task test_editor_state_clone (type: Test) {
+	filter.includeTestsMatching "EditorStateTest.testEditorStateClone"
+}
+
+task test_editor_print (type: Test) {
+	filter.includeTestsMatching "EditorTest.testFileLoadingAndTextPrinting"
+}
+task test_editor_cursor_move_commands (type: Test) {
+	filter.includeTestsMatching "EditorTest.testCursorMovingCommands"
+}
+
+task test_editor_insert_commands (type: Test) {
+	filter.includeTestsMatching "EditorTest.testInsertCommand"
+}
+
+task test_editor_delete_commands (type: Test) {
+	filter.includeTestsMatching "EditorTest.testDeleteCommand"
+}
+task test_editor_search_commands (type: Test) {
+	filter.includeTestsMatching "EditorTest.testSearchCommand"
+}
+
+task test_editor_replace_commands (type: Test) {
+	filter.includeTestsMatching "EditorTest.testReplaceCommand"
+}
+
+task test_editor_undo_redo_commands (type: Test) {
+	filter.includeTestsMatching "EditorTest.testUndoRedoCommands"
+}
+
+sourceSets.main.java.srcDirs = ['src/main/java']
+
+
+run {
+	standardInput = System.in
+}
