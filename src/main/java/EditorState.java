@@ -34,7 +34,8 @@ public class EditorState implements Cloneable {
     }
     
     public void moveCursorForward() {
-        if (cursorPos < text.length() - 2) cursorPos++;
+        System.out.println("cursorpos: " + cursorPos + " length: " + text.length());
+        if (cursorPos < text.length()) cursorPos++;
     }
 
     public void moveCursorBackward() {
