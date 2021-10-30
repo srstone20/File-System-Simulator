@@ -1,6 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.Stack;
 
 class Editor {
@@ -8,20 +7,17 @@ class Editor {
     private Stack<EditorState> undoStack;
     private Stack<EditorState> redoStack;
 
-    Editor(File file) {
-        try (Scanner sc = new Scanner(file)){
-            sc.useDelimiter("\\Z");
-            edState.setText(sc.next());
+    Editor(String file) {
+        String text = "";
+        try {
+            text = new String(Files.readAllBytes(Paths.get(file)));
         }
-        catch (FileNotFoundException e) {
-            System.out.print(e.getMessage());
+        catch (IOException e) {
+            System.out.println(e.getMessage());
         }
+        edState.setText(text);
         undoStack = new Stack<EditorState>();
         redoStack = new Stack<EditorState>();
-    }
-
-    Editor(String file) {
-        this(new File(file));
     }
 
     EditorState getEditorState() {
