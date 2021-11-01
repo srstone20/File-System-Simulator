@@ -11,6 +11,7 @@ class Editor {
         String text = "";
         try {
             text = new String(Files.readAllBytes(Paths.get(file)));
+            text.trim();
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
@@ -78,7 +79,7 @@ class Editor {
             edState.setCursorPosition(searchedString.indexOf(key) + edState.getCursorPosition());
             return true;
         }
-        edState.setCursorPosition(edState.getText().length());
+        edState.setCursorPosition(edState.getText().length() - 2);
         return false;
     }
 

@@ -5,7 +5,7 @@ public class EditorState implements Cloneable {
 
     EditorState(String text, int cursorPos) {
         this.text = text;
-        this.cursorPos = cursorPos;
+        this.cursorPos = cursorPos; // represents the index that the cursor will be placed before
     }
 
     EditorState (String text) {
@@ -35,7 +35,7 @@ public class EditorState implements Cloneable {
     
     public void moveCursorForward() {
         System.out.println("cursorpos: " + cursorPos + " length: " + text.length());
-        if (cursorPos < text.length()) cursorPos++;
+        if (cursorPos < text.length() - 2) cursorPos++;
     }
 
     public void moveCursorBackward() {
