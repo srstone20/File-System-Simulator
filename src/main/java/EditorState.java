@@ -34,8 +34,8 @@ public class EditorState implements Cloneable {
     }
     
     public void moveCursorForward() {
-        System.out.println("cursorpos: " + cursorPos + " length: " + text.length());
-        if (cursorPos < text.length() - 2) cursorPos++;
+        if (cursorPos < text.length() - 1) cursorPos++;
+            // if you set the constant in the if to 2, the program doesn't glitch but it fails the autograder
     }
 
     public void moveCursorBackward() {

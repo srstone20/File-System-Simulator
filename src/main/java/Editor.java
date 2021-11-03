@@ -11,11 +11,11 @@ class Editor {
         String text = "";
         try {
             text = new String(Files.readAllBytes(Paths.get(file)));
-            text.trim();
         }
         catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        text.trim();
         edState.setText(text);
         undoStack = new Stack<EditorState>();
         redoStack = new Stack<EditorState>();
@@ -79,7 +79,7 @@ class Editor {
             edState.setCursorPosition(searchedString.indexOf(key) + edState.getCursorPosition());
             return true;
         }
-        edState.setCursorPosition(edState.getText().length() - 2);
+        edState.setCursorPosition(edState.getText().length());
         return false;
     }
 
@@ -99,9 +99,37 @@ class Editor {
     }
 
     public String toString() {
-        String stringBefore = edState.getText().substring(0, edState.getCursorPosition());
-        String stringAfter = edState.getText().substring(edState.getCursorPosition(), edState.getText().length());
-        return stringBefore + "_" + stringAfter;
+        System.out.println("THE FUCKING TEXT: " + edState.getText());
+        System.out.println("THE FUCKING CURSOR POSITION: " + edState.getCursorPosition());
+        System.out.println("THE TEXT LENGTH: " + edState.getText().length());
+
+        String before = edState.getText().substring(0, edState.getCursorPosition());
+        String after = edState.getText().substring(edState.getCursorPosition(), edState.getText().length());
+
+        System.out.println("THE STRING BEFORE: " + before);
+        System.out.println("THE STRING AFTER: " + after);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(before);
+        sb.append("_");
+        sb.append(after);
+
+        System.out.println("STRINGBUILDER: " + sb.toString());
+
+        return before + "_" + after;
+
+        // return stringBefore + "_" + stringAfter;
+        // String before = "";
+        // String after = "";
+
+        // if (edState.getCursorPosition() > 1 && (edState.getText().charAt(edState.getCursorPosition() - 1) == '\n' || edState.getText().charAt(edState.getCursorPosition() - 1) == '\r')) {
+        //     before = edState.getText().substring(0, edState.getCursorPosition() - 1);
+        //     after = edState.getText().substring(edState.getCursorPosition(), edState.getText().length());    
+        // }
+        // else {
+        //     before = edState.getText().substring(0, edState.getCursorPosition());
+        //     after = edState.getText().substring(edState.getCursorPosition(), edState.getText().length());
+        // }
     }
 
 }
