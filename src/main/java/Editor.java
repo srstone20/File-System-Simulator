@@ -98,40 +98,11 @@ class Editor {
         }
     }
 
+    // this is where the problem is?? I think
     public String toString() {
-        // System.out.println("THE TEXT: " + edState.getText());
-        // System.out.println("THE CURSOR POSITION: " + edState.getCursorPosition());
-        // System.out.println("THE TEXT LENGTH: " + edState.getText().length());
-
         String before = edState.getText().substring(0, edState.getCursorPosition());
         String after = edState.getText().substring(edState.getCursorPosition(), edState.getText().length());
-
-        // The strings before and after print perfectly fine by themselves, but when combined into one string the cursor is all messed up\
-        // this only happens when the cursor is on a newline character
-        // System.out.println("THE STRING BEFORE: " + before);
-        // System.out.println("THE STRING AFTER: " + after);
-
-        // StringBuilder sb = new StringBuilder();
-        // sb.append(before);
-        // sb.append("_");
-        // sb.append(after);
-
-        // System.out.println("STRINGBUILDER: " + sb.toString());
-
         return before + "_" + after;
-
-        // return stringBefore + "_" + stringAfter;
-        // String before = "";
-        // String after = "";
-
-        // if (edState.getCursorPosition() > 1 && (edState.getText().charAt(edState.getCursorPosition() - 1) == '\n' || edState.getText().charAt(edState.getCursorPosition() - 1) == '\r')) {
-        //     before = edState.getText().substring(0, edState.getCursorPosition() - 1);
-        //     after = edState.getText().substring(edState.getCursorPosition(), edState.getText().length());    
-        // }
-        // else {
-        //     before = edState.getText().substring(0, edState.getCursorPosition());
-        //     after = edState.getText().substring(edState.getCursorPosition(), edState.getText().length());
-        // }
     }
 
 }
