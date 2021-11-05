@@ -99,22 +99,24 @@ class Editor {
     }
 
     public String toString() {
-        System.out.println("THE FUCKING TEXT: " + edState.getText());
-        System.out.println("THE FUCKING CURSOR POSITION: " + edState.getCursorPosition());
-        System.out.println("THE TEXT LENGTH: " + edState.getText().length());
+        // System.out.println("THE TEXT: " + edState.getText());
+        // System.out.println("THE CURSOR POSITION: " + edState.getCursorPosition());
+        // System.out.println("THE TEXT LENGTH: " + edState.getText().length());
 
         String before = edState.getText().substring(0, edState.getCursorPosition());
         String after = edState.getText().substring(edState.getCursorPosition(), edState.getText().length());
 
-        System.out.println("THE STRING BEFORE: " + before);
-        System.out.println("THE STRING AFTER: " + after);
+        // The strings before and after print perfectly fine by themselves, but when combined into one string the cursor is all messed up\
+        // this only happens when the cursor is on a newline character
+        // System.out.println("THE STRING BEFORE: " + before);
+        // System.out.println("THE STRING AFTER: " + after);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(before);
-        sb.append("_");
-        sb.append(after);
+        // StringBuilder sb = new StringBuilder();
+        // sb.append(before);
+        // sb.append("_");
+        // sb.append(after);
 
-        System.out.println("STRINGBUILDER: " + sb.toString());
+        // System.out.println("STRINGBUILDER: " + sb.toString());
 
         return before + "_" + after;
 
